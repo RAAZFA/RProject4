@@ -64,7 +64,7 @@
                         <ul>
                               <li><a href="<?= base_url() ?>">Home</a></li>
                               <?php foreach ($kategori as $kate) { ?>
-                                    <li><a href="<?= base_url('home/kategori' . $kate['id_kategori']) ?>"><?= $kate['nama_kategori'] ?></a></li>
+                                    <li><a href="<?= base_url('home/kategori/' . $kate['id_kategori']) ?>"><?= $kate['nama_kategori'] ?></a></li>
                               <?php } ?>
                               <li><a href="#portfolio">Portfolio</a></li>
                               <li><a href="<?= base_url('auth/login') ?>">Login</a></li>

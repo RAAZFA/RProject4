@@ -1,66 +1,201 @@
 <!-- End Navbar -->
-<div class="container-fluid py-4">
-  <div class="row">
-    <div class="row mt-4">
-      <div class="col-lg-7 mb-lg-0 mb-4">
-        <div class="card z-index-2 h-100">
-          <div class="card-header pb-0 pt-3 bg-transparent">
-           
-          </div>
-          <?= $this->session->flashdata('alert', true) ?>
-          <div class="card-body p-3 ">
-            <div class="chart">
-              <canvas height="400"></canvas>
-            </div>
-          </div>
+<!-- Widgets Start -->
+<!-- Widgets Start -->
+<div id="ilang">
+  <?= $this->session->flashdata('alert', true) ?>
+</div>
+
+
+<div class="col-lg-12 mb-lg-0 mb-4">
+  <div class="card z-index-2 h-100">
+    <div class="card-header pb-0 pt-3 bg-transparent">
+      <a href="<?= base_url('admin/conten/tambah_conten') ?>" class="btn btn-square btn-warning m-2"><i class="bi bi-pencil-square">tambah Konten</a>
+      <br>
+      <div class="card px-4 mb-4">
+        <div class="card-header pb-2">
+          <h6>table Conten</h6>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Num</th>
+                <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Judul</th>
+                <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Kategori Konten</th>
+                <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Tanggal</th>
+                <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">KREATOR </th>
+                <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Foto</th>
+                <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $no = 1;
+              foreach ($konten as $aa) { ?>
+                <tr>
+                  <div class="d-flex px-2 py-1">
+                    <th scope="row" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder"><?= $no; ?></th>
+                    <td class="text-center  text-secondary text-xxl font-weight-bolder"><?= $aa['judul']; ?></td>
+                    <td class="text-center  text-secondary text-xxl font-weight-bolder"><?= $aa['nama_kategori']; ?></td>
+                    <td class="text-center  text-secondary text-xxl font-weight-bolder"><?= $aa['tanggal']; ?></td>
+                    <td class="text-center  text-secondary text-xxl font-weight-bolder"><?= $aa['nama']; ?></td>
+                    <td class="text-center  text-secondary text-xxl font-weight-bolder">
+                      <a href="<?= base_url('assets_template/upload/conten/' . $aa['foto']) ?>" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg> Lihat Foto
+                      </a>
+                    </td>
+
+                    <td class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                      <a href="<?= base_url('admin/conten/delete/' . $aa['foto'])  ?>" onclick="return confirm('Apakah anda yakin menghapus data ini?')" class="btn btn-danger m-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                        </svg> </a>
+                      <a href="<?= base_url('admin/conten/edit_conten/' . $aa['id_konten']) ?>" class="btn btn-warning m-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg></a>
+                    </td>
+                  </div>
+
+                </tr>
+              <?php $no++;
+              } ?>
+            </tbody>
+          </table>
+
+          <br>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div class="card card-carousel overflow-hidden h-100 p-0">
-          <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-            <div class="carousel-inner border-radius-lg h-100">
-              <div class="carousel-item h-100 active" style="background-image: url('<?= base_url('assets_template/argon') ?>/assets/img/carousel-1.jpg');
-      background-size: cover;">
-                <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                  <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                    <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                  </div>
-                  <h5 class="text-white mb-1">Get started with Argon</h5>
-                  <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Widgets End -->
+
+
+<div id="ilang">
+  <?= $this->session->flashdata('alert', true) ?>
+</div>
+<div class="container-fluid py-4">
+  <div class="mt-3">
+    <!-- Button trigger modal -->
+    <div class="row">
+      <div class="row mt-4">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <a href="<?= base_url('admin/kategori/tambah_kategori') ?>" class="btn btn-square btn-warning m-2"><i class="bi bi-pencil-square">tambah kategori</a>
+              <br>
+              <div class="card px-4 mb-4">
+                <div class="card-header pb-2">
+                  <h6>table categories</h6>
                 </div>
-              </div>
-              <div class="carousel-item h-100" style="background-image: url('<?= base_url('assets_template/argon') ?>/assets/img/carousel-2.jpg');
-      background-size: cover;">
-                <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                  <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                    <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                  </div>
-                  <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                  <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
-                </div>
-              </div>
-              <div class="carousel-item h-100" style="background-image: url('<?= base_url('assets_template/argon') ?>/assets/img/carousel-3.jpg');
-      background-size: cover;">
-                <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                  <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                    <i class="ni ni-trophy text-dark opacity-10"></i>
-                  </div>
-                  <h5 class="text-white mb-1">Share with us your design tips!</h5>
-                  <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+                <div class="table-responsive ">
+                  <table class="table align-items-center">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Num</th>
+                        <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Nama</th>
+                        <th scope="col" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php $no = 1;
+                      foreach ($kategori as $aa) { ?>
+                        <tr>
+                          <div class="d-flex px-2 py-1">
+                            <th scope="row" class="text-center text-uppercase text-secondary text-xxl font-weight-bolder"><?= $no; ?></th>
+                            <td class="text-center  text-secondary text-xxl font-weight-bolder"><?= $aa['nama_kategori']; ?></td>
+                            <td class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                              <a href="<?= base_url('admin/kategori/delete/' . $aa['id_kategori'])  ?>" onclick="return confirm('Apakah anda yakin menghapus data ini?')" class="btn btn-danger m-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                </svg> </a>
+                              <a href="<?= base_url('admin/kategori/edit_kategori/' . $aa['id_kategori'])  ?>" class="btn btn-warning m-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                </svg></a>
+                            </td>
+                          </div>
+                        </tr>
+                      <?php $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                  <br>
                 </div>
               </div>
             </div>
-            <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="container-fluid py-4">
+  <div class="mt-3">
+    <!-- Button trigger modal -->
+    <div class="row">
+      <div class="col-lg-12 mb-lg-0 mb-4">
+        <div class="col-xl">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h4 class="mb-4 ">Tambah Caraousel</h4>
+              <form method="post" action="<?= base_url('admin/caraousel/tambah'); ?>" enctype="multipart/form-data">
+                <div class="container-fluid pt-4 px-4">
+                  <div class="col-sm-12 col-xl-12">
+                    <div class="bg-light rounded h-100 p-4">
+                      <label for="floatingInput">Judul</label>
+                      <div class="form mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="judul">
+                      </div>
+                      <label for="floatingInput">Pilih Foto dgn ukuran (1:3)</label>
+                      <div class="form mb-3">
+                        <input type="file" class="form-control" id="floatingInput" name="foto" accept="image/png,image/jpeg ">
+                      </div>
+                      <br>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 mb-lg-0 mb-4">
+  <div class="col-xl">
+    <div class="row">
+      <?php foreach ($caraousel as $cc) { ?>
+        <div class="col-md-3 mb-3 mt-3">
+          <div class="card w-100">
+            <div class="text-center">
+              <div class="card w-100">
+                <br>
+                <h4 class="mb-4 ">Caraousel</h4>
+                <img src="<?= base_url('assets_template/upload/carousel/' . $cc['foto']) ?>" class="d-block w-100 " alt="...">
+                <h5 class="card-tittle"><?= $cc['judul'] ?></h5>
+                <a href="<?= base_url('admin/caraousel/delete/' . $cc['foto'])  ?>" onclick="return confirm('Apakah anda yakin menghapus data ini?')" class="btn btn-danger m-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php } ?>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Widgets End -->
